@@ -14,7 +14,16 @@
 <link rel="icon" type="image/png" href="icons/favicon-64.png" />
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
-  :root { --font: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  :root {
+    --font: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* ---- SIZE KNOBS: tweak these two to taste ---------------------- */
+    /* Big "16°" current temperature. Lower the middle number to shrink. */
+    --temp-size: clamp(52px, 11.5vw, 104px);
+    /* "High: 18° · Low: 11°" row. Lower the middle number to shrink.    */
+    --hilo-size: clamp(14px, 2.7vw, 24px);
+    /* --------------------------------------------------------------- */
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
     height: 100%; background: #0d1117; font-family: var(--font);
@@ -25,7 +34,7 @@
 
   .widget {
     position: relative; width: 100%; aspect-ratio: 1343 / 701;
-    border-radius: 28px; overflow: hidden;
+    border-radius: 28px 28px 0 0; overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     background: #2b3440; transition: background 0.8s ease; user-select: none;
   }
@@ -46,10 +55,12 @@
   }
   .now-label { font-size: clamp(15px,2.6vw,22px); font-weight: 600; color: #aecbfa; letter-spacing: 0.2px; }
   .temp-row { display: flex; align-items: flex-start; gap: clamp(4px,1.5vw,14px); margin-top: clamp(2px,0.8vw,6px); }
-  .temp { font-size: clamp(58px,13vw,112px); font-weight: 700; line-height: 0.9; color: #aecbfa; letter-spacing: -2px; }
+  /* ID #temp — the big current temperature. Size = var(--temp-size) up top. */
+  #temp { font-size: var(--temp-size); font-weight: 700; line-height: 0.9; color: #aecbfa; letter-spacing: -2px; }
   .cond-glyph { width: clamp(46px,10vw,92px); height: clamp(46px,10vw,92px); margin-top: clamp(8px,2vw,22px); flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35)); }
-  .hilo { margin-top: clamp(8px,2vw,18px); font-size: clamp(15px,3vw,26px); font-weight: 400; color: rgba(255,255,255,0.82); }
-  .hilo .dot { opacity: 0.6; margin: 0 6px; }
+  /* ID #hilo — the "High / Low" row. Size = var(--hilo-size) up top. */
+  #hilo { margin-top: clamp(6px,1.4vw,14px); font-size: var(--hilo-size); font-weight: 400; color: rgba(255,255,255,0.82); }
+  #hilo .dot { opacity: 0.6; margin: 0 6px; }
   .cond-block { position: absolute; top: clamp(14px,3.5vw,30px); right: clamp(18px,4.5vw,40px); text-align: right; }
   .cond-word { font-size: clamp(22px,4.6vw,42px); font-weight: 700; color: #fff; line-height: 1; }
   .feels { margin-top: clamp(4px,1vw,10px); font-size: clamp(14px,2.8vw,26px); font-weight: 400; color: rgba(255,255,255,0.72); }
