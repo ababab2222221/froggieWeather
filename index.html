@@ -24,12 +24,11 @@
     --hilo-size: clamp(14px, 2.7vw, 24px);
 
     /* ---- ZOOM/PAN KNOBS (online full-res art only) ---------------- */
-    /* Zoom factor for the remote full-res scene. 1 = no zoom. Try 1.5–3. */
-    --zoom: 2;
-    /* Vertical anchor of the zoomed image, 0 = top, 0.5 = middle, 1 = bottom.
-       Froggie scenes put the frog's head high (just under the clothesline), so a
-       low value shows the top band where the frog is. 0.2 catches head+body. */
-    --zoom-anchor-y: 0.2;
+    /* Zoom factor ON TOP of cover-by-height. 1 = scene fills card height (frog already
+       ~2.4x bigger than the old strip). Raise for an even tighter crop. Try 1–1.6. */
+    --zoom: 1;
+    /* Vertical anchor when zoomed >1: 0 = top, 0.5 = middle, 1 = bottom. At zoom 1 unused. */
+    --zoom-anchor-y: 0.35;
     /* --------------------------------------------------------------- */
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,19 +46,18 @@
     background: #2b3440; transition: background 0.8s ease; user-select: none;
   }
   .sky { position: absolute; inset: 0; transition: background 0.8s ease; z-index: 1; }
-  /* Fixed window — same footprint as the old .scene img (full width, bottom-anchored,
-     natural strip height). overflow:hidden clips the zoomed image to this frame. */
+  /* Fixed window filling the WHOLE card. overflow:hidden clips the scene to it.
+     The image covers this frame by height and overflows horizontally, which is what we pan. */
   .scene-frame {
-    position: absolute; left: 0; right: 0; bottom: 0; width: 100%;
+    position: absolute; inset: 0; width: 100%;
     z-index: 2; overflow: hidden;
-    aspect-ratio: 2880 / 615;   /* locks frame height to the native strip ratio at full width */
     touch-action: pan-y;        /* let vertical page scroll through; we handle horizontal */
   }
-  /* The image inside. At scale 1 it fills the frame exactly (frame aspect == image aspect).
-     When zoomed it's taller/wider; applyTransform owns ALL translation. */
+  /* The image. height:100% makes it cover the frame vertically (fills top-to-bottom);
+     width auto keeps aspect, so it overflows horizontally. applyTransform owns translation. */
   .scene {
     position: absolute; top: 0; left: 0;
-    width: 100%; height: auto; display: block;
+    height: 100%; width: auto; display: block;
     transform-origin: left top;
     transform: translate(0, 0) scale(1);
     will-change: transform;
@@ -304,17 +302,20 @@ function applyTransform() {
   const z = zoomed ? cssNum('--zoom', 2) : 1;
   const anchorY = cssNum('--zoom-anchor-y', 0.5);
   const frameH = sceneFrame.getBoundingClientRect().height;
-  const overflowY = frameH * (z - 1);          // how much taller than the frame the image is
-  const ty = -overflowY * anchorY;             // shift up to center the anchor band
+  // image height at scale 1 == frameH (height:100%). At scale z it's frameH*z.
+  const overflowY = frameH * (z - 1);          // vertical overflow when zoomed
+  const ty = -overflowY * anchorY;             // shift to show the chosen vertical band
   scene.style.transform = `translate(${panX}px, ${ty}px) scale(${z})`;
 }
 
-/* Clamp pan so you can't drag past the image edges. */
+/* Clamp pan so you can't drag past the image edges (horizontal only). */
 function maxPan() {
   const z = zoomed ? cssNum('--zoom', 2) : 1;
   const frameW = sceneFrame.getBoundingClientRect().width;
-  const imgW = frameW * z;           // image rendered width (width:100% then scaled)
-  return Math.max(0, imgW - frameW); // how far left we can slide (positive number)
+  // actual rendered image width at scale 1 = its natural width scaled to height:100%.
+  // offsetWidth gives the layout width before transform; multiply by z for the scaled width.
+  const imgW = scene.offsetWidth * z;
+  return Math.max(0, imgW - frameW);
 }
 function clampPan() {
   const m = maxPan();
@@ -323,10 +324,13 @@ function clampPan() {
 }
 
 function positionFade() {
-  const stripH = sceneFrame.getBoundingClientRect().height;
-  sceneFade.style.bottom = (stripH - 1) + 'px';
+  // Full-card image now sits behind everything; a soft dark gradient over the TOP
+  // keeps the temperature/text readable against busy art. Fade covers upper portion.
+  sceneFade.style.top = '0';
+  sceneFade.style.bottom = 'auto';
+  sceneFade.style.height = '62%';
   const c = getComputedStyle(sky).backgroundColor;
-  sceneFade.style.background = `linear-gradient(180deg, rgba(0,0,0,0) 0%, ${c} 100%)`;
+  sceneFade.style.background = `linear-gradient(180deg, ${c} 0%, ${c} 30%, rgba(0,0,0,0) 100%)`;
 }
 
 /* Load a scene. Remote-first (full-res, zoomable); on failure use bundled fallback (static). */
@@ -334,25 +338,34 @@ function loadScene(state, file) {
   const remoteUrl = `${RAW_BASE}/${state}/${file}`;
   const img = new Image();
   img.onload = () => {
-    // success: remote full-res, enable zoom+pan
+    // success: remote full-res
     zoomed = true;
-    panX = -0.0001; // start at left edge (0); tiny nudge avoids no-op transform
     panX = 0;
     scene.src = remoteUrl;
-    sceneFrame.classList.add('zoomable');
-    requestAnimationFrame(() => { clampPan(); applyTransform(); positionFade(); });
+    requestAnimationFrame(() => { clampPan(); applyTransform(); positionFade(); updatePannable(); });
   };
   img.onerror = () => {
-    // fallback: bundled compressed scene for the SAME file, static (no zoom/pan)
+    // fallback: bundled compressed scene for the SAME file
     zoomed = false; panX = 0;
-    sceneFrame.classList.remove('zoomable');
     const stateBundle = FALLBACK[state] || {};
     const uri = stateBundle[file] || Object.values(stateBundle)[0] || Object.values(FALLBACK['00-neutral']||{})[0];
     if (uri) scene.src = uri;
-    requestAnimationFrame(() => { applyTransform(); positionFade(); });
+    requestAnimationFrame(() => { clampPan(); applyTransform(); positionFade(); updatePannable(); });
   };
   img.src = remoteUrl;
 }
+
+/* Cover-by-height overflows horizontally, so panning is available whenever there's overflow —
+   for BOTH remote and fallback images. Measure after the <img> has laid out. */
+function updatePannable() {
+  const canPan = maxPan() > 1;
+  sceneFrame.classList.toggle('zoomable', canPan);
+}
+// the visible scene <img> fires load whenever its src resolves (remote or data-uri);
+// offsetWidth is only correct then, so recompute pan state + transform on every load.
+scene.addEventListener('load', () => {
+  requestAnimationFrame(() => { clampPan(); applyTransform(); positionFade(); updatePannable(); });
+});
 
 function pickRandomFile(state, exclude=null) {
   const arr = MANIFEST[state] || [];
@@ -402,11 +415,13 @@ shuffleBtn.addEventListener('click', () => {
   shuffleBtn.classList.remove('spin'); void shuffleBtn.offsetWidth; shuffleBtn.classList.add('spin');
 });
 
-/* ---------- drag-to-pan (horizontal only, remote/zoomed mode) ---------- */
+/* ---------- drag-to-pan (horizontal only; active whenever there's overflow) ---------- */
 let dragging=false, dragStartX=0, panStart=0, moved=false;
+let lastX=0, lastT=0, velocity=0;   // for the lightest flick inertia
 function dragStart(clientX) {
-  if (!zoomed) return;
+  if (maxPan() <= 1) return;        // nothing to pan
   dragging=true; moved=false; dragStartX=clientX; panStart=panX;
+  lastX=clientX; lastT=performance.now(); velocity=0;
   sceneFrame.classList.add('dragging');
   scene.style.transition='none';
 }
@@ -414,6 +429,10 @@ function dragMove(clientX) {
   if (!dragging) return;
   const dx = clientX - dragStartX;
   if (Math.abs(dx) > 3) moved=true;
+  // track velocity for a gentle release glide
+  const now=performance.now(), dt=now-lastT;
+  if (dt>0) velocity = (clientX-lastX)/dt;   // px per ms
+  lastX=clientX; lastT=now;
   panX = panStart + dx;
   clampPan();
   applyTransform();
@@ -422,7 +441,17 @@ function dragEnd() {
   if (!dragging) return;
   dragging=false;
   sceneFrame.classList.remove('dragging');
-  scene.style.transition='';
+  // lightest of glides: coast a short distance based on release velocity, then ease.
+  const glide = velocity * 90;               // small multiplier = very light inertia
+  if (Math.abs(glide) > 4) {
+    panX += glide;
+    clampPan();
+    scene.style.transition = 'transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1)';
+    applyTransform();
+    setTimeout(()=>{ scene.style.transition=''; }, 380);
+  } else {
+    scene.style.transition='';
+  }
 }
 // pointer events cover touch + mouse
 sceneFrame.addEventListener('pointerdown', (e)=>{ dragStart(e.clientX); sceneFrame.setPointerCapture(e.pointerId); });
@@ -430,7 +459,7 @@ sceneFrame.addEventListener('pointermove', (e)=>{ dragMove(e.clientX); });
 sceneFrame.addEventListener('pointerup',   ()=>dragEnd());
 sceneFrame.addEventListener('pointercancel',()=>dragEnd());
 // re-clamp on resize/orientation change
-window.addEventListener('resize', ()=>{ clampPan(); applyTransform(); positionFade(); });
+window.addEventListener('resize', ()=>{ clampPan(); applyTransform(); positionFade(); updatePannable(); });
 
 /* ---------- Open-Meteo ---------- */
 async function fetchWeather(lat, lon) {
