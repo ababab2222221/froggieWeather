@@ -1,6 +1,8 @@
-/* Froggie Weather service worker — cache the shell so it opens offline.
-   Weather data itself always goes to the network (falls back to last render). */
-const CACHE = 'froggie-v18';
+/* Froggie Weather service worker.
+   - HTML is network-first, so a new deploy shows up on the next load.
+   - Everything else is cache-first for speed / offline.
+   - Weather API calls are never cached. */
+const CACHE = 'froggie-v22';
 const ASSETS = [
   './',
   './index.html',
@@ -13,33 +15,67 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // take over immediately rather than waiting for every old tab to close
+  e.waitUntil(
+    caches.open(CACHE)
+      .then((c) => c.addAll(ASSETS).catch(() => {}))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
+});
+
+// let the page ask us to activate straight away
+self.addEventListener('message', (e) => {
+  if (e.data === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  // never cache weather / geocoding API calls — always fresh from network
+
+  // weather + geocoding: always network, never cached
   if (url.hostname.endsWith('open-meteo.com')) {
-    e.respondWith(fetch(e.request).catch(() => new Response('{}', { headers: { 'Content-Type': 'application/json' } })));
+    e.respondWith(
+      fetch(e.request).catch(() =>
+        new Response('{}', { headers: { 'Content-Type': 'application/json' } }))
+    );
     return;
   }
-  // cache-first for the app shell
+
+  // HTML: network-first so deploys are picked up; cache is the offline fallback
+  const isHTML = e.request.mode === 'navigate' ||
+                 e.request.destination === 'document' ||
+                 url.pathname.endsWith('/') ||
+                 url.pathname.endsWith('index.html');
+  if (isHTML) {
+    e.respondWith(
+      fetch(e.request)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, copy));
+          return res;
+        })
+        .catch(() => caches.match(e.request).then((hit) => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // everything else: cache-first
   e.respondWith(
-    caches.match(e.request).then((hit) => hit || fetch(e.request).then((res) => {
-      // opportunistically cache same-origin GETs
-      if (e.request.method === 'GET' && url.origin === location.origin) {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(e.request, copy));
-      }
-      return res;
-    }).catch(() => hit))
+    caches.match(e.request).then((hit) =>
+      hit || fetch(e.request).then((res) => {
+        if (e.request.method === 'GET' && url.origin === location.origin) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, copy));
+        }
+        return res;
+      }).catch(() => hit)
+    )
   );
 });
