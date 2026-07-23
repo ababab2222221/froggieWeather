@@ -1,0 +1,351 @@
+{
+  "source": {
+    "fork_raw_base": "https://raw.githubusercontent.com/ababab2222221/google-weather-icons/main/froggie/v2/mobile",
+    "original_repo": "https://github.com/bignutty/google-weather-icons",
+    "fork_repo": "https://github.com/ababab2222221/google-weather-icons",
+    "path_within_repo": "froggie/v2/mobile",
+    "branch": "main",
+    "cors": "access-control-allow-origin: * (fetchable cross-origin)",
+    "note": "Google weather art; personal use only, no clear redistribution license."
+  },
+  "counts": {
+    "states": 24,
+    "total_scene_pngs": 111,
+    "states_with_lottie": 2
+  },
+  "states": {
+    "00-neutral": {
+      "label": "Neutral / fallback",
+      "time_of_day": "any",
+      "scene_count": 1,
+      "single_scene": true,
+      "scenes": [
+        "00-neutral-fallback.png"
+      ],
+      "lottie": []
+    },
+    "01-sunny": {
+      "label": "Sunny",
+      "time_of_day": "day",
+      "scene_count": 10,
+      "single_scene": false,
+      "scenes": [
+        "01-sunny-beach-reading.png",
+        "01-sunny-beach-sandcastle.png",
+        "01-sunny-beach-sunscreen.png",
+        "01-sunny-citypark-sunbathing.png",
+        "01-sunny-creek-swimming.png",
+        "01-sunny-field-kite.png",
+        "01-sunny-hills-sunbathing.png",
+        "01-sunny-home-laundry.png",
+        "01-sunny-orchard-picking.png",
+        "01-sunny-rooftop-pinacolada.png"
+      ],
+      "lottie": [
+        "sunny_background.json",
+        "sunny_foreground.json"
+      ]
+    },
+    "02-mostly-sunny": {
+      "label": "Mostly sunny",
+      "time_of_day": "day",
+      "scene_count": 10,
+      "single_scene": false,
+      "scenes": [
+        "02-mostly-sunny-beach-reading.png",
+        "02-mostly-sunny-beach-sandcastle.png",
+        "02-mostly-sunny-beach-sunscreen.png",
+        "02-mostly-sunny-citypark-picnic.png",
+        "02-mostly-sunny-creek-swimming.png",
+        "02-mostly-sunny-field-kite.png",
+        "02-mostly-sunny-hills-sunbathing.png",
+        "02-mostly-sunny-home-laundry.png",
+        "02-mostly-sunny-orchard-picking.png",
+        "02-mostly-sunny-rooftop-pinacolada.png"
+      ],
+      "lottie": [
+        "mostly_sunny_background.json",
+        "mostly_sunny_foreground.json"
+      ]
+    },
+    "03-partly-cloudy-day": {
+      "label": "Partly cloudy",
+      "time_of_day": "day",
+      "scene_count": 10,
+      "single_scene": false,
+      "scenes": [
+        "03-partly-cloudy-day-beach-shells.png",
+        "03-partly-cloudy-day-citypark-ukelele.png",
+        "03-partly-cloudy-day-creek-feet.png",
+        "03-partly-cloudy-day-field-biking.png",
+        "03-partly-cloudy-day-field-hiking.png",
+        "03-partly-cloudy-day-hills-painting.png",
+        "03-partly-cloudy-day-hills-reading.png",
+        "03-partly-cloudy-day-home-flowers.png",
+        "03-partly-cloudy-day-orchard-butterflies.png",
+        "03-partly-cloudy-day-orchard-treeswing.png"
+      ],
+      "lottie": []
+    },
+    "04-mostly-cloudy-day": {
+      "label": "Mostly cloudy",
+      "time_of_day": "day",
+      "scene_count": 10,
+      "single_scene": false,
+      "scenes": [
+        "04-mostly-cloudy-day-beach-shells.png",
+        "04-mostly-cloudy-day-citypark-ukelele.png",
+        "04-mostly-cloudy-day-creek-feet.png",
+        "04-mostly-cloudy-day-field-biking.png",
+        "04-mostly-cloudy-day-field-hiking.png",
+        "04-mostly-cloudy-day-hills-painting.png",
+        "04-mostly-cloudy-day-hills-reading.png",
+        "04-mostly-cloudy-day-home-flowers.png",
+        "04-mostly-cloudy-day-orchard-butterflies.png",
+        "04-mostly-cloudy-day-orchard-treeswing.png"
+      ],
+      "lottie": []
+    },
+    "05-clear": {
+      "label": "Clear",
+      "time_of_day": "night",
+      "scene_count": 6,
+      "single_scene": false,
+      "scenes": [
+        "05-clear-creek-stars.png",
+        "05-clear-field-lanterns.png",
+        "05-clear-hills-camping.png",
+        "05-clear-hills-telescope.png",
+        "05-clear-home-lounging.png",
+        "05-clear-orchard-fireflies.png"
+      ],
+      "lottie": []
+    },
+    "06-mostly-clear": {
+      "label": "Mostly clear",
+      "time_of_day": "night",
+      "scene_count": 6,
+      "single_scene": false,
+      "scenes": [
+        "06-mostly-clear-creek-stars.png",
+        "06-mostly-clear-field-lanterns.png",
+        "06-mostly-clear-hills-camping.png",
+        "06-mostly-clear-hills-telescope.png",
+        "06-mostly-clear-home-lounging.png",
+        "06-mostly-clear-orchard-fireflies.png"
+      ],
+      "lottie": []
+    },
+    "07-partly-cloudy-night": {
+      "label": "Partly cloudy",
+      "time_of_day": "night",
+      "scene_count": 5,
+      "single_scene": false,
+      "scenes": [
+        "07-partly-cloudy-night-creek-fireflies.png",
+        "07-partly-cloudy-night-field-fireflies.png",
+        "07-partly-cloudy-night-hills-smores.png",
+        "07-partly-cloudy-night-home-inside.png",
+        "07-partly-cloudy-night-orchard-eating.png"
+      ],
+      "lottie": []
+    },
+    "08-mostly-cloudy-night": {
+      "label": "Mostly cloudy",
+      "time_of_day": "night",
+      "scene_count": 5,
+      "single_scene": false,
+      "scenes": [
+        "08-mostly-cloudy-night-creek-fireflies.png",
+        "08-mostly-cloudy-night-field-fireflies.png",
+        "08-mostly-cloudy-night-hills-smores.png",
+        "08-mostly-cloudy-night-home-inside.png",
+        "08-mostly-cloudy-night-orchard-eating.png"
+      ],
+      "lottie": []
+    },
+    "09-cloudy": {
+      "label": "Cloudy",
+      "time_of_day": "any",
+      "scene_count": 3,
+      "single_scene": false,
+      "scenes": [
+        "09-cloudy-hills-coffee.png",
+        "09-cloudy-home-flowers.png",
+        "09-cloudy-orchard-watching.png"
+      ],
+      "lottie": []
+    },
+    "10-drizzle": {
+      "label": "Drizzle",
+      "time_of_day": "any",
+      "scene_count": 5,
+      "single_scene": false,
+      "scenes": [
+        "10-drizzle-creek-leaf.png",
+        "10-drizzle-field-leaf.png",
+        "10-drizzle-hills-umbrella.png",
+        "10-drizzle-home-laundry.png",
+        "10-drizzle-orchard-reading.png"
+      ],
+      "lottie": []
+    },
+    "11-rain": {
+      "label": "Rain",
+      "time_of_day": "any",
+      "scene_count": 5,
+      "single_scene": false,
+      "scenes": [
+        "11-rain-creek-leaf.png",
+        "11-rain-hills-umbrella.png",
+        "11-rain-home-inside.png",
+        "11-rain-home-laundry.png",
+        "11-shower-rain-field-leaf.png"
+      ],
+      "lottie": []
+    },
+    "12-heavy-rain": {
+      "label": "Heavy rain",
+      "time_of_day": "any",
+      "scene_count": 3,
+      "single_scene": false,
+      "scenes": [
+        "12-heavy-rain-busstop-umbrella.png",
+        "12-heavy-rain-cafe-sitting-singing.png",
+        "12-heavy-rain-creek-leaf.png"
+      ],
+      "lottie": []
+    },
+    "13-flurries": {
+      "label": "Flurries",
+      "time_of_day": "any",
+      "scene_count": 2,
+      "single_scene": false,
+      "scenes": [
+        "13-flurries-citypark-snowman.png",
+        "13-flurries-creek-iceskating.png"
+      ],
+      "lottie": []
+    },
+    "15-snow-showers-snow": {
+      "label": "Snow showers / snow",
+      "time_of_day": "any",
+      "scene_count": 3,
+      "single_scene": false,
+      "scenes": [
+        "15-snow-showers-snow-citypark-snowman.png",
+        "15-snow-showers-snow-creek-iceskating.png",
+        "15-snow-showers-snow-home-shoveling.png"
+      ],
+      "lottie": []
+    },
+    "16-blowing-snow": {
+      "label": "Blowing snow",
+      "time_of_day": "any",
+      "scene_count": 1,
+      "single_scene": true,
+      "scenes": [
+        "16-blowing-snow-field-snowman.png"
+      ],
+      "lottie": []
+    },
+    "17-heavy-snow-blizzard": {
+      "label": "Heavy snow / blizzard",
+      "time_of_day": "any",
+      "scene_count": 2,
+      "single_scene": false,
+      "scenes": [
+        "17-heavy-snow-blizzard-home-inside.png",
+        "17-heavy-snow-blizzard-home-shoveling.png"
+      ],
+      "lottie": []
+    },
+    "19-mixed-rain-hail-rain-sleet": {
+      "label": "Mixed rain, hail, sleet",
+      "time_of_day": "any",
+      "scene_count": 2,
+      "single_scene": false,
+      "scenes": [
+        "19-mixed-rain-hail-rain-sleet-busstop-waiting.png",
+        "19-mixed-rain-hail-rain-sleet-cafe-entering.png"
+      ],
+      "lottie": []
+    },
+    "20-rain-snow-wintry-mix": {
+      "label": "Rain, snow, wintry mix",
+      "time_of_day": "any",
+      "scene_count": 1,
+      "single_scene": true,
+      "scenes": [
+        "20-rain-snow-wintry-mix-citypark-snowman.png"
+      ],
+      "lottie": []
+    },
+    "22-iso-thunderstorms": {
+      "label": "Isolated thunderstorms",
+      "time_of_day": "any",
+      "scene_count": 3,
+      "single_scene": false,
+      "scenes": [
+        "22-iso-thunderstorms-busstop-newspaper.png",
+        "22-iso-thunderstorms-cafe-looking-outside.png",
+        "22-iso-thunderstorms-home-inside.png"
+      ],
+      "lottie": []
+    },
+    "23-scattered-thunderstorms": {
+      "label": "Scattered thunderstorms",
+      "time_of_day": "any",
+      "scene_count": 4,
+      "single_scene": false,
+      "scenes": [
+        "23-scattered-thunderstorms-busstop-coffee.png",
+        "23-scattered-thunderstorms-busstop-newspaper.png",
+        "23-scattered-thunderstorms-cafe-looking-outside.png",
+        "23-scattered-thunderstorms-home-inside.png"
+      ],
+      "lottie": []
+    },
+    "24-strong-thunderstorms": {
+      "label": "Strong thunderstorms",
+      "time_of_day": "any",
+      "scene_count": 4,
+      "single_scene": false,
+      "scenes": [
+        "24-strong-thunderstorms-busstop-coffee.png",
+        "24-strong-thunderstorms-busstop-newspaper.png",
+        "24-strong-thunderstorms-cafe-looking-outside.png",
+        "24-strong-thunderstorms-home-inside.png"
+      ],
+      "lottie": []
+    },
+    "25-breezy-windy": {
+      "label": "Breezy / windy",
+      "time_of_day": "any",
+      "scene_count": 2,
+      "single_scene": false,
+      "scenes": [
+        "25-breezy-windy-creek-pinwheel.png",
+        "25-breezy-windy-home-laundry.png"
+      ],
+      "lottie": []
+    },
+    "26-haze-fog-dust-smoke": {
+      "label": "Haze, fog, dust, smoke",
+      "time_of_day": "any",
+      "scene_count": 8,
+      "single_scene": false,
+      "scenes": [
+        "26-haze-fog-dust-smoke-bridge.png",
+        "26-haze-fog-dust-smoke-busstop-waiting.png",
+        "26-haze-fog-dust-smoke-field-lantern.png",
+        "26-haze-fog-dust-smoke-fruit-stand.png",
+        "26-haze-fog-dust-smoke-hills-cocoa.png",
+        "26-haze-fog-dust-smoke-mountain.png",
+        "26-haze-fog-dust-smoke-pier.png",
+        "26-haze-fog-dust-smoke-rooftop.png"
+      ],
+      "lottie": []
+    }
+  }
+}

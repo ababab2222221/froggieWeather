@@ -1,0 +1,161 @@
+{
+"00-neutral": {
+"00-neutral-fallback.png": 0.283
+},
+"01-sunny": {
+"01-sunny-beach-reading.png": 0.291,
+"01-sunny-beach-sandcastle.png": 0.28,
+"01-sunny-beach-sunscreen.png": 0.27,
+"01-sunny-citypark-sunbathing.png": 0.3,
+"01-sunny-creek-swimming.png": 0.248,
+"01-sunny-field-kite.png": 0.401,
+"01-sunny-hills-sunbathing.png": 0.436,
+"01-sunny-home-laundry.png": 0.256,
+"01-sunny-orchard-picking.png": 0.223,
+"01-sunny-rooftop-pinacolada.png": 0.36
+},
+"02-mostly-sunny": {
+"02-mostly-sunny-beach-reading.png": 0.291,
+"02-mostly-sunny-beach-sandcastle.png": 0.289,
+"02-mostly-sunny-beach-sunscreen.png": 0.273,
+"02-mostly-sunny-citypark-picnic.png": 0.3,
+"02-mostly-sunny-creek-swimming.png": 0.248,
+"02-mostly-sunny-field-kite.png": 0.419,
+"02-mostly-sunny-hills-sunbathing.png": 0.436,
+"02-mostly-sunny-home-laundry.png": 0.221,
+"02-mostly-sunny-orchard-picking.png": 0.215,
+"02-mostly-sunny-rooftop-pinacolada.png": 0.358
+},
+"03-partly-cloudy-day": {
+"03-partly-cloudy-day-beach-shells.png": 0.397,
+"03-partly-cloudy-day-citypark-ukelele.png": 0.3,
+"03-partly-cloudy-day-creek-feet.png": 0.09,
+"03-partly-cloudy-day-field-biking.png": 0.391,
+"03-partly-cloudy-day-field-hiking.png": 0.393,
+"03-partly-cloudy-day-hills-painting.png": 0.399,
+"03-partly-cloudy-day-hills-reading.png": 0.298,
+"03-partly-cloudy-day-home-flowers.png": 0.274,
+"03-partly-cloudy-day-orchard-butterflies.png": 0.415,
+"03-partly-cloudy-day-orchard-treeswing.png": 0.414
+},
+"04-mostly-cloudy-day": {
+"04-mostly-cloudy-day-beach-shells.png": 0.398,
+"04-mostly-cloudy-day-citypark-ukelele.png": 0.3,
+"04-mostly-cloudy-day-creek-feet.png": 0.168,
+"04-mostly-cloudy-day-field-biking.png": 0.391,
+"04-mostly-cloudy-day-field-hiking.png": 0.392,
+"04-mostly-cloudy-day-hills-painting.png": 0.399,
+"04-mostly-cloudy-day-hills-reading.png": 0.299,
+"04-mostly-cloudy-day-home-flowers.png": 0.274,
+"04-mostly-cloudy-day-orchard-butterflies.png": 0.426,
+"04-mostly-cloudy-day-orchard-treeswing.png": 0.645
+},
+"05-clear": {
+"05-clear-creek-stars.png": 0.118,
+"05-clear-field-lanterns.png": 0.398,
+"05-clear-hills-camping.png": 0.45,
+"05-clear-hills-telescope.png": 0.423,
+"05-clear-home-lounging.png": 0.283,
+"05-clear-orchard-fireflies.png": 0.407
+},
+"06-mostly-clear": {
+"06-mostly-clear-creek-stars.png": 0.118,
+"06-mostly-clear-field-lanterns.png": 0.399,
+"06-mostly-clear-hills-camping.png": 0.45,
+"06-mostly-clear-hills-telescope.png": 0.423,
+"06-mostly-clear-home-lounging.png": 0.282,
+"06-mostly-clear-orchard-fireflies.png": 0.42
+},
+"07-partly-cloudy-night": {
+"07-partly-cloudy-night-creek-fireflies.png": 0.124,
+"07-partly-cloudy-night-field-fireflies.png": 0.659,
+"07-partly-cloudy-night-hills-smores.png": 0.391,
+"07-partly-cloudy-night-home-inside.png": 0.244,
+"07-partly-cloudy-night-orchard-eating.png": 0.393
+},
+"08-mostly-cloudy-night": {
+"08-mostly-cloudy-night-creek-fireflies.png": 0.122,
+"08-mostly-cloudy-night-field-fireflies.png": 0.659,
+"08-mostly-cloudy-night-hills-smores.png": 0.388,
+"08-mostly-cloudy-night-home-inside.png": 0.243,
+"08-mostly-cloudy-night-orchard-eating.png": 0.365
+},
+"09-cloudy": {
+"09-cloudy-hills-coffee.png": 0.299,
+"09-cloudy-home-flowers.png": 0.272,
+"09-cloudy-orchard-watching.png": 0.379
+},
+"10-drizzle": {
+"10-drizzle-creek-leaf.png": 0.282,
+"10-drizzle-field-leaf.png": 0.4,
+"10-drizzle-hills-umbrella.png": 0.401,
+"10-drizzle-home-laundry.png": 0.293,
+"10-drizzle-orchard-reading.png": 0.371
+},
+"11-rain": {
+"11-rain-creek-leaf.png": 0.282,
+"11-rain-hills-umbrella.png": 0.272,
+"11-rain-home-inside.png": 0.375,
+"11-rain-home-laundry.png": 0.253,
+"11-shower-rain-field-leaf.png": 0.396
+},
+"12-heavy-rain": {
+"12-heavy-rain-busstop-umbrella.png": 0.201,
+"12-heavy-rain-cafe-sitting-singing.png": 0.341,
+"12-heavy-rain-creek-leaf.png": 0.289
+},
+"13-flurries": {
+"13-flurries-citypark-snowman.png": 0.173,
+"13-flurries-creek-iceskating.png": 0.387
+},
+"15-snow-showers-snow": {
+"15-snow-showers-snow-citypark-snowman.png": 0.18,
+"15-snow-showers-snow-creek-iceskating.png": 0.051,
+"15-snow-showers-snow-home-shoveling.png": 0.32
+},
+"16-blowing-snow": {
+"16-blowing-snow-field-snowman.png": 0.758
+},
+"17-heavy-snow-blizzard": {
+"17-heavy-snow-blizzard-home-inside.png": 0.406,
+"17-heavy-snow-blizzard-home-shoveling.png": 0.32
+},
+"19-mixed-rain-hail-rain-sleet": {
+"19-mixed-rain-hail-rain-sleet-busstop-waiting.png": 0.189,
+"19-mixed-rain-hail-rain-sleet-cafe-entering.png": 0.061
+},
+"20-rain-snow-wintry-mix": {
+"20-rain-snow-wintry-mix-citypark-snowman.png": 0.137
+},
+"22-iso-thunderstorms": {
+"22-iso-thunderstorms-busstop-newspaper.png": 0.192,
+"22-iso-thunderstorms-cafe-looking-outside.png": 0.306,
+"22-iso-thunderstorms-home-inside.png": 0.338
+},
+"23-scattered-thunderstorms": {
+"23-scattered-thunderstorms-busstop-coffee.png": 0.191,
+"23-scattered-thunderstorms-busstop-newspaper.png": 0.193,
+"23-scattered-thunderstorms-cafe-looking-outside.png": 0.306,
+"23-scattered-thunderstorms-home-inside.png": 0.37
+},
+"24-strong-thunderstorms": {
+"24-strong-thunderstorms-busstop-coffee.png": 0.194,
+"24-strong-thunderstorms-busstop-newspaper.png": 0.192,
+"24-strong-thunderstorms-cafe-looking-outside.png": 0.306,
+"24-strong-thunderstorms-home-inside.png": 0.37
+},
+"25-breezy-windy": {
+"25-breezy-windy-creek-pinwheel.png": 0.265,
+"25-breezy-windy-home-laundry.png": 0.22
+},
+"26-haze-fog-dust-smoke": {
+"26-haze-fog-dust-smoke-bridge.png": 0.794,
+"26-haze-fog-dust-smoke-busstop-waiting.png": 0.197,
+"26-haze-fog-dust-smoke-field-lantern.png": 0.966,
+"26-haze-fog-dust-smoke-fruit-stand.png": 0.238,
+"26-haze-fog-dust-smoke-hills-cocoa.png": 0.389,
+"26-haze-fog-dust-smoke-mountain.png": 0.842,
+"26-haze-fog-dust-smoke-pier.png": 0.263,
+"26-haze-fog-dust-smoke-rooftop.png": 0.37
+}
+}

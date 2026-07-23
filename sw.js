@@ -1,6 +1,6 @@
 /* Froggie Weather service worker — cache the shell so it opens offline.
    Weather data itself always goes to the network (falls back to last render). */
-const CACHE = 'froggie-v3';
+const CACHE = 'froggie-v15';
 const ASSETS = [
   './',
   './index.html',
